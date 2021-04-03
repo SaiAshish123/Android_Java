@@ -9,5 +9,5 @@ import retrofit2.http.GET;
 
 public interface AlbumsDataService {
   @GET("albums")
-  Call<List<Albums>> getEmployees();
+  Call<List<Albums>> getAlbums();
 }

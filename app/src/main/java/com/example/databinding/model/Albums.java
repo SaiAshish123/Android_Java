@@ -1,11 +1,7 @@
 
 package com.example.databinding.model;
 
-import android.widget.ImageView;
-import androidx.databinding.BindingAdapter;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.databinding.R;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Albums {
@@ -41,15 +37,5 @@ public class Albums {
     this.title = title;
   }
 
-  // important code for loading image here
-  @BindingAdapter({ "avatar" })
-  public static void loadImage(ImageView imageView, String imageURL) {
 
-    Glide.with(imageView.getContext())
-        .setDefaultRequestOptions(new RequestOptions()
-            .circleCrop())
-        .load(imageURL)
-        .placeholder(R.drawable.loading)
-        .into(imageView);
-  }
 }

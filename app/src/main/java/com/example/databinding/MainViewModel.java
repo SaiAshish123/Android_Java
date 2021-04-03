@@ -17,7 +17,7 @@ public class MainViewModel extends AndroidViewModel {
     albumRepository = new AlbumRepository();
   }
 
-  public LiveData<List<Albums>> getAllEmployee() {
+  public LiveData<List<Albums>> getAllAlbums() {
     return albumRepository.getMutableLiveData();
   }
 }

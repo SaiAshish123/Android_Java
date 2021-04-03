@@ -22,12 +22,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Ashish
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
    * Updating the Albums Arraylist into Adapter
    */
   private void getAllAlbums() {
-    mainViewModel.getAllEmployee().observe(this, new Observer<List<Albums>>() {
+    mainViewModel.getAllAlbums().observe(this, new Observer<List<Albums>>() {
       @Override
       public void onChanged(@Nullable List<Albums> albums) {
 
