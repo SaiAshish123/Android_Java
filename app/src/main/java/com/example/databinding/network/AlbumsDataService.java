@@ -10,4 +10,6 @@ import retrofit2.http.GET;
 public interface AlbumsDataService {
   @GET("albums")
   Call<List<Albums>> getAlbums();
+
+   List<Albums>  setAlbums();
 }

@@ -86,12 +86,16 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onChanged(@Nullable List<Albums> albums) {
 
-        Collections.sort(albums,(o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
-        employeeDataAdapter.setEmployeeList((ArrayList<Albums>) albums);
+        setArraylist(albums);
       }
     });
 
 
+  }
+
+  public void setArraylist(List<Albums> albums) {
+    Collections.sort(albums,(o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
+    employeeDataAdapter.setEmployeeList((ArrayList<Albums>) albums);
   }
 
 
