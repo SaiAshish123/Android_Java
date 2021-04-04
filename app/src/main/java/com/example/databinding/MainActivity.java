@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
   private AlbumsDataAdapter employeeDataAdapter;
   boolean connected = false;
 
+  /**
+   * Oncreate Started
+   * @param savedInstanceState
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -45,10 +49,19 @@ public class MainActivity extends AppCompatActivity {
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerView.setHasFixedSize(true);
 
+    /**
+     * Passing the Context to the View Model Providers
+     */
     mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+    /**
+     * Setting the Adapter
+     */
     employeeDataAdapter = new AlbumsDataAdapter(MainActivity.this);
     recyclerView.setAdapter(employeeDataAdapter);
 
+    /**
+     * Checking the Internet Conmnectivity
+     */
     ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
     if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
             connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
@@ -58,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     else
       connected = false;
     /**
-     * Getting data from Offline
+     * Getting data from Offline LST Object using shared preference
      */
 
     SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
@@ -68,18 +81,18 @@ public class MainActivity extends AppCompatActivity {
     List<Albums> albums = gson.fromJson(json, type);
     if (!connected){
       Toast.makeText(this, "No Internet Connection Available !!!", Toast.LENGTH_SHORT).show();
-      employeeDataAdapter.setEmployeeList((ArrayList<Albums>) albums);
+      employeeDataAdapter.setAlbumList((ArrayList<Albums>) albums);
     }else{
+      /**
+       * If Network Available Call the APi
+       */
       getAllAlbums();
     }
-
-
-
 
   }
 
   /**
-   * Updating the Albums Arraylist into Adapter
+   * Updating the Albums Arraylist into Adapter using view model Object
    */
   private void getAllAlbums() {
     mainViewModel.getAllAlbums().observe(this, new Observer<List<Albums>>() {
@@ -93,9 +106,13 @@ public class MainActivity extends AppCompatActivity {
 
   }
 
+  /**
+   * Sorting the Array list using Java 8 Comparator with lambda xpression for title Object
+   * @param albums
+   */
   public void setArraylist(List<Albums> albums) {
     Collections.sort(albums,(o1, o2) -> o1.getTitle().compareTo(o2.getTitle()));
-    employeeDataAdapter.setEmployeeList((ArrayList<Albums>) albums);
+    employeeDataAdapter.setAlbumList((ArrayList<Albums>) albums);
   }
 
 

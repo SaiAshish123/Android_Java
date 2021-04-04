@@ -9,15 +9,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * @author Asish
+ */
 public class AlbumRepository {
 
+  /**
+   * Declaring the Variables
+   */
   private ArrayList<Albums> albums = new ArrayList<>();
   private MutableLiveData<List<Albums>> mutableLiveData = new MutableLiveData<>();
 
 
+  /**
+   * Creating default Constructor
+   */
   public AlbumRepository() {
   }
 
+  /**
+   * Get Mutable Live data from  API thread using call back retrofit function
+   * @return
+   */
   public MutableLiveData<List<Albums>> getMutableLiveData() {
 
     final AlbumsDataService userDataService = RetrofitClient.getService();

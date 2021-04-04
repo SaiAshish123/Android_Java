@@ -19,12 +19,19 @@ import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * @author Asish
+ */
 public class AlbumsDataAdapter
     extends RecyclerView.Adapter<AlbumsDataAdapter.EmployeeViewHolder> {
 
   SharedPreferences sharedPrefs;
   private ArrayList<Albums> albums;
 
+  /**
+   * Using contrext param shared preference are intialized
+   * @param mainActivity
+   */
   public AlbumsDataAdapter(MainActivity mainActivity) {
     sharedPrefs  = PreferenceManager.getDefaultSharedPreferences(mainActivity);
 
@@ -32,6 +39,12 @@ public class AlbumsDataAdapter
 
   }
 
+  /**
+   * Creating View Group Object for Custom layout
+   * @param viewGroup
+   * @param i
+   * @return
+   */
   @NonNull
   @Override
   public EmployeeViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -41,12 +54,21 @@ public class AlbumsDataAdapter
     return new EmployeeViewHolder(employeeListItemBinding);
   }
 
+  /**
+   * Creating OnBindView Holder which reference the Object position
+   * @param employeeViewHolder
+   * @param i
+   */
   @Override
   public void onBindViewHolder(@NonNull EmployeeViewHolder employeeViewHolder, int i) {
     Albums currentStudent = albums.get(i);
     employeeViewHolder.employeeListItemBinding.setAlbums(currentStudent);
   }
 
+  /**
+   * Get the Item Count of Arraylist
+   * @return
+   */
   @Override
   public int getItemCount() {
     if (albums != null) {
@@ -56,9 +78,16 @@ public class AlbumsDataAdapter
     }
   }
 
-  public void setEmployeeList(ArrayList<Albums> albums) {
+  /**
+   *  Setting the Album list into Adapter
+   * @param albums
+   */
+  public void setAlbumList(ArrayList<Albums> albums) {
 
     this.albums = albums;
+    /**
+     * Storing the list of Objects using Gson
+     */
     SharedPreferences.Editor editor = sharedPrefs.edit();
     Gson gson = new Gson();
     String json = gson.toJson(albums);
