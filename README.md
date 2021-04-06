@@ -7,6 +7,7 @@
 - Shared Preferences
 - Android X Arch Libraries
 - RecyclerView for Showing List of Albums
+- Activity Used
 
 ### Functionality
 - Internet Connectivity Check
